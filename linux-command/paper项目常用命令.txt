@@ -1,0 +1,55 @@
+1.进入docker，打开项目
+	-> cd ~/app/www/
+	-> sudo docker-compose -f docker-compose.yml up -d
+
+2.查看docker容器中运行配置
+	-> sudo docker ps
+
+3.进入mysql
+	-> sudo docker exec -it www_mysql_1 /bin/bash
+	-> mysql -uroot -p
+	-> 1q2w3e4r5t(密码)
+
+4.进入paper数据库看表
+	-> use paper;
+	-> show tables;
+	-> desc 表名；
+	-> show columns from 表名;
+
+5.加表（加文件）
+	-> sudo docker exec -it www_php_1 /bin/bash
+	-> cd app/www/paper(切换到主目录)
+	->./migrate.php AddPaperObservation(文件名)
+
+
+6.数据库改动后执行更新
+	-> sudo docker exec -it www_php_1 /bin/bash
+	-> cd app/www/paper(切换到主目录)
+	-> ./migrate.php
+
+7.更改文件权限
+	-> sudo chmod -R 777
+
+8.coding上提交代码
+	-> (项目目录下)
+	-> git status
+	-> git add .
+	-> git commit -m "add"
+	-> git push origin dev/wyr
+
+9.coding下拉代码
+	-> git pull origin dev/wyr(用户名 ada_2580)
+ 
+10.coding 切换分支
+	-> git checkout 分支
+   coding 查看分支
+	-> git branch
+
+11.*.tar 文件解压
+	-> tar -xvf php.tar(文件名)
+
+12.由镜像导出到文件
+	-> docker save -o daocloud.io_library_python.tar daocloud.io/library/python
+   由文件导入到镜像
+	-> docker load -i php.tar(文件名)
+
